@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cream: #EFE6DD;
+  --color-forest: #013E37;
+  --color-cherry: #9A0002;
+  --color-butter: #FFEFB3;
+  --color-brass: #B78D42;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+}
+
+h1, h2, h3, .font-serif {
+  font-family: var(--font-cormorant), serif;
+}
+
+/* Hide default scrollbar tracks to keep things seamless */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #013E37;
+}
+::-webkit-scrollbar-thumb {
+  background: #B78D42;
+  border-radius: 3px;
+}
+
+/* ==========================================================================
+   RAJO SMRUTI CUSTOM UTILITY STYLES (Pasted Directly to Avoid PostCSS Imports)
+   ========================================================================== */
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.book-wrapper {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.book-side {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.book-cover-front {
+  transform-origin: left center;
+  z-index: 2;
+}
+
+.book-pages-block {
+  transform: translateZ(-2px);
+  z-index: 1;
+}
+
+.diorama-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.diorama-layer {
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+}
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
