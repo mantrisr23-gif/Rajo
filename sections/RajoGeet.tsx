@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence, useMotionValue, animate } from "framer-motion";
 
 const slides = [
@@ -22,7 +22,23 @@ const slides = [
 
 const SNAP_EASE = [0.76, 0, 0.24, 1];
 
-function SlideCard({ slide, isActive, index, activeIndex, onClick, cardWidth }) {
+interface SlideCardProps {
+  slide: any;
+  isActive: boolean;
+  index: number;
+  activeIndex: number;
+  onClick: (index: number) => void;
+  cardWidth: number;
+}
+
+function SlideCard({ 
+  slide, 
+  isActive, 
+  index, 
+  activeIndex, 
+  onClick, 
+  cardWidth 
+}: SlideCardProps) {
   const distance = index - activeIndex;
   const absDistance = Math.abs(distance);
 
@@ -165,7 +181,7 @@ export default function RajoGeet() {
   const GAP = 24;
   const STEP = CARD_W + GAP;
 
-  const goTo = useCallback((index) => {
+  const goTo = useCallback((index: number) => {
     const clamped = Math.max(0, Math.min(slides.length - 1, index));
     setActiveIndex(clamped);
     animate(dragX, -clamped * STEP, {
@@ -176,7 +192,7 @@ export default function RajoGeet() {
     });
   }, [dragX, STEP]);
 
-  const handleDragEnd = useCallback((_, info) => {
+  const handleDragEnd = useCallback((_: any, info: any) => {
     setIsDragging(false);
     const velocity = info.velocity.x;
     const offset = info.offset.x;
